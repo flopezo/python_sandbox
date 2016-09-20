@@ -1,6 +1,5 @@
 '''
 Retrieve non-matching BLAST queries
-""
 http://biopython.org/wiki/Retrieve_nonmatching_blast_queries
 Presume you set up a BLAST run with the sequences in a file called queries.fasta searched against a database, with the results saved to BLAST_RESULTS.xml
 '''
