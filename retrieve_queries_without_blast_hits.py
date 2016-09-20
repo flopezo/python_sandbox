@@ -10,6 +10,7 @@ from Bio.Blast import NCBIXML
 
 # Build an index, but we don't need to parse the record
 q_dict = SeqIO.index("queries.fasta", "fasta")
+output_handle = open("orphan_records.fasta", "w")
 
 hits = []
 for record in NCBIXML.parse(open("BLAST_RESULTS.xml")):
@@ -28,6 +29,9 @@ for record in NCBIXML.parse(open("BLAST_RESULTS.xml")):
 
 misses = set(q_dict.keys()) - set(hits)
 orphan_records = [q_dict[name] for name in misses]
+
+SeqIO.write(orphan_records, output_handle, "fasta")
+output_handle.close()
 
 print("found %i records in query, %i have hits, making %i misses"
       % (len(q_dict), len(hits), len(misses)))
